@@ -12,9 +12,7 @@ The software controls the full pipeline of the machine: camera capture, image pr
 
 The Raspberry Pi 5 acts as the central processing unit. The diagram below shows the high-level data and control flow of the system:
 
-```
 ![contextual overview](Assets/ContextualOverview.png)
-```
 
 HSV + Sobel Edge Detection Architecture: Before any inference, a Sobel operator is applied to each captured frame. If the number of edge pixels above a binary threshold exceeds a certain predetermined number, the system proceeds to the evaluation state. Otherwise, it remains idle. This prevents false classifications when no marble is present. Then, raw RGB frames from the camera are converted to HSV colour space. Predefined HSV masks for each marble colour are applied. The mask with the highest pixel count above a threshold determines the marble's category.
 
@@ -205,7 +203,7 @@ The Pi Camera Module 3 is configured to capture at 400×300 pixels (reduced from
 | Sobel edge detection implementation | OpenCV. "Edge Detection Using OpenCV." https://opencv.org/edge-detection-using-opencv/ | Adapted from static image example to live Pi Camera frame capture |
 | HSV thresholding | OpenCV. "Image Thresholding." https://docs.opencv.org/4.x/d7/d4d/tutorial_py_thresholding.html | Used for binarising Sobel gradient magnitude |
 | MobileNetV3 transfer learning workflow | YouTube tutorial: https://www.youtube.com/watch?v=12GvOHNc5DI | Adapted; `.h5` replaced with `.keras` export; `Image.ANTIALIAS` replaced with `Image.LANCZOS` |
-| TFLite conversion and inference | TensorFlow documentation | Input shape fixed to `[1, 320, 320, 3]`; float32 normalisation applied |
+| TFLite conversion and inference | YouTube tutorial: https://www.youtube.com/watch?v=HXzz87WVm6c&t=1567s | Input shape fixed to `[1, 320, 320, 3]`; float32 normalisation applied |
 | gpiozero servo and stepper control | gpiozero documentation: https://gpiozero.readthedocs.io/en/stable/recipes.html | Used in place of RPi.GPIO/pigpio (incompatible with Raspberry Pi 5) |
 
 All remaining logic (state machine, motor sequencing, HSV mask tuning, overall architecture) is original work.
