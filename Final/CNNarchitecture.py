@@ -44,15 +44,17 @@ LED = DigitalOutputDevice(22)           # white LEDs in light isolation module
 DIR_PIN = DigitalOutputDevice(20)            
 STEP_PIN = DigitalOutputDevice(21)           
 EN = DigitalOutputDevice(2)
-M0 = DigitalOutputDevice(13)
-M1 = DigitalOutputDevice(19)
-M2 = DigitalOutputDevice(26)
+CFG0 = DigitalOutputDevice(13)
+CFG1 = DigitalOutputDevice(19)
+CFG2 = DigitalOutputDevice(26)
+CFG3 = DigitalOutputDevice(10)
 
 # Initialise driver mode
 EN.on()     #active low
-M0.off()
-M1.off()
-M2.off()    # all M pins are off allowing 8 microstep operation
+CFG0.off()
+CFG1.off()  # CFG0 & CFG1 pins are off allowing 8 microstep operation
+CFG2.on()  # CFG2 HIGH & CFG3 HIGH allowing 1.7 A RMS with 15 kOhms
+CFG3.on()
 LED.on()
 
 # Container position for each colour abstracted as integers
