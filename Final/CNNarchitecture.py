@@ -96,14 +96,14 @@ noneStart = 0
 
 # How many steps needed to go to adjacent container
 # this assumes that the all container entry position are identical
-adjacentStep = int((motorRange/containerTotal)/1.8) 
+adjacentStep = int((motorRange/containerTotal)/1.8) + 1
 
 
 # Servo move function
 def servo_move(position, hold_time = 0.2):
     servo.value = position
     sleep(hold_time)        # allow time for servo to turn fully
-    servo.detach()          # detach pin to stop servo jitter
+    servo.value = None         # detach pin to stop servo jitter
     
 servo_move(posClose)        # initialise servo to close position
 
